@@ -90,7 +90,7 @@ class VirtualMonome {
   void buttonTrigger(int x, int y, int s) {
     if (y == 0) {
       page = x;
-      System.out.println("ORA >>> VIRTUAL_MONOME_PAGE " + x);
+      System.out.println(applicationName + " >>> VIRTUAL_MONOME_PAGE " + x);
     }
     buttons[page][x][y].trigger(y, s);
     // key(x, y, 0);

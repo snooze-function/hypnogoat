@@ -28,7 +28,7 @@ void key(int x, int y, int s) {
     led = ledPage[x];
     led[0][x] = 15;
     dirty = true;
-    System.out.println("ORA >>> MONOME_PAGE " + x);
+    System.out.println(applicationName + " >>> MONOME_PAGE " + x);
   }
 
   // PAGE #00

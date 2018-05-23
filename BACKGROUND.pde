@@ -12,10 +12,10 @@ void background_changeColour() {
     // GENERATE NEW MONOCHROME BACKGROUND COLOUR
     bg = color(random(bg_range));
   }
-  System.out.println("ORA >>> NEW BACKGROUND COLOUR " + bg);
+  System.out.println(applicationName + " >>> NEW BACKGROUND COLOUR " + bg);
 }
 
 void background_redraw() {
   redraw = !redraw;
-  System.out.println("ORA >>> BACKGROUND REDRAWING = " + redraw);
+  System.out.println(applicationName + " >>> BACKGROUND REDRAWING = " + redraw);
 }

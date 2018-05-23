@@ -1,10 +1,10 @@
 /*
  +++++++++++++++++++++++++++++++++++++++++++++++++++
- ++++ora [M0N0M3 C0NTR0LL3D G3N3R4T1V3 V15U4L5]+++++
- +++++++++++++++++++++++++++++++++++++++++++++++++++
- ++DATE 18-01-28++++++++++++++++++++++++++++++++++++
- ++VERSION 0.01+++++++++++++++++++++++++++++++++++++
- ++AUTHOR red [Markus Loebel]+++++++++++++++++++++++
+ +hypnotoad ++++++++++++++++++++++++++++++++++++++++
+ +++[M0N0M3 C0NTR0LL3D G3N3R4T1V3 V15U4L5]+++++++++++
+ +++++++DATE 18-01-28+++++++++++++++++++++++++++++++
+ +++++++VERSION 0.01++++++++++++++++++++++++++++++++
+ +++++++AUTHOR red [Markus Loebel]++++++++++++++++++
  +++++++++++++++++++++++++++++++++++++++++++++++++++
  +++++++++++++++++++++++++++++++++++++++++++++++++++
  */
@@ -14,7 +14,7 @@ import oscP5.*;
 
 Timer timer;
 Monome m;
-String applicationName = "ora";
+String applicationName = "hypnotoad";
 String applicationInformation = "* version 0.01 * written by Markus Loebel (red) * May 2018 *";
 String applicationVersion = applicationInformation.substring(2, 14);
 String applicationAuthor = applicationInformation.substring(17, 48);
