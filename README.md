@@ -15,8 +15,8 @@ While continuing to learn I also want to add more functionality to _Hypnotoad_.
 _Hypnotoad_ provides a built-in Help Menu with instructions.
 
 ## Requirements  
-* [Processing](processing.org)
+* [Processing](https://processing.org/)
 
-* [monome-processing library](github.com/monome/monome-processing/releases/latest)
+* [monome-processing library](https://github.com/monome/monome-processing/releases/latest)
 
-* [oscP5 library](sojamo.de/libraries/oscp5)
+* [oscP5 library](www.sojamo.de/libraries/oscp5)
