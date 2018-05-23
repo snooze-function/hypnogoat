@@ -12,6 +12,8 @@
 import org.monome.Monome;
 import oscP5.*;
 
+boolean recording = false;
+
 Timer timer;
 Monome m;
 String applicationName = "hypnotoad";
@@ -43,7 +45,7 @@ PFont myFont;
 
 public void setup() {
   // SET BACKGROUND SIZE (MUST BE THE FIRST LINE IN SETUP)
-  size(600, 300);
+  size(1200, 600);
   // fullScreen();
   // surface.setResizable(true);
 
@@ -93,6 +95,12 @@ public void setup() {
 }
 
 public void draw() {
+
+  // RECORDER
+  if (recording) {
+    saveFrame("output/hypnotoad_#####.png");
+  }
+
   // 
   if (timer.isFinished()) {
     // changeBackgroundColour();

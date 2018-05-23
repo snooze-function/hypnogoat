@@ -13,6 +13,7 @@ void mouseReleased() {
 
 void keyPressed() {
   keyboardTriggers();
+  recordingToggle();
 }
 
 void key(int x, int y, int s) {
@@ -134,5 +135,12 @@ void keyboardTriggers() {
     if (key == '0') {
       background_changeColour();
     }
+  }
+}
+
+void recordingToggle() {
+  if (key == 'r' || key == 'R') {
+    recording = ! recording;
+    System.out.println(applicationName + "RECORDING = " + recording);
   }
 }
