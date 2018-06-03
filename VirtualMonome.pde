@@ -92,7 +92,8 @@ class VirtualMonome {
       page = x;
       System.out.println(applicationName + " >>> VIRTUAL_MONOME_PAGE " + x);
     }
-    buttons[page][x][y].trigger(y, s);
+    buttons[page][x][y].trigger(x, y, s);
     // key(x, y, 0);
+    //System.out.println("sdjf");
   }
 }
