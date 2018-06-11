@@ -27,6 +27,11 @@ int[][][] ledPage;
 int[][] led;
 boolean dirty;
 
+// INITIALIZE VIRTUAL MONOME VARIABLES
+VirtualMonome virtualMonome;
+boolean virtualDirty;
+boolean redraw = true;
+
 // INITIALIZE TIMER VARIABLES
 Timer timer;
 int counter;
@@ -46,18 +51,10 @@ boolean recording = false;
 // INITIALIZE STRINGS
 String applicationName = "hypnotoad";
 String applicationInformation = "* version 0.01 * written by Markus Loebel (red) * May 2018 *";
+
 String applicationVersion = applicationInformation.substring(2, 14);
 String applicationAuthor = applicationInformation.substring(17, 48);
 String applicationDate = applicationInformation.substring(50, 58);
-
-// INITIALIZE VIRTUAL MONOME VARIABLES
-VirtualMonome virtualMonome;
-boolean virtualDirty;
-boolean redraw = true;
-
-// INITIALIZE LINE ANIMATION VARIABLES (MOVE INTO CLASSS!!!)
-int currentLine = 0; 
-int currentRing = 0;
 
 // INITIALIZE SPLASH SCREEN VARIABLES
 boolean splashScreen = true;
@@ -82,6 +79,9 @@ public void setup() {
   // FULL SCREEN
   fullScreen();
   // surface.setResizable(true);
+  
+  // SLOW DOWN FOR DEBUGGING
+  // frameRate(5);
 
   // ANTI-ALIASING ON
   smooth();

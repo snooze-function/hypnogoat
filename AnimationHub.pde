@@ -14,6 +14,7 @@ class AnimationHub {
   boolean on; // UNUSED
 
   MoverAnimation[][] animations;
+  // LineAnimation[][] animations;
 
   AnimationHub( int temp_numAnimationPages, int temp_numAnimations) {
     numAnimationPages = temp_numAnimationPages;
@@ -23,11 +24,13 @@ class AnimationHub {
 
     // CREATE THE ARRAY
     animations = new MoverAnimation[numAnimationPages][numAnimations];
+    // animations = new LineAnimation[numAnimationPages][numAnimations];
 
     // FILL ARRAY WITH ANIMATIONS
     for (int i = 0; i < numAnimationPages; i++) {
       for (int j = 0; j < numAnimations; j++) {
         animations[i][j] = new MoverAnimation(25, int(random(11)), 0, 7, int(random(11)), 1, 1, height/5, true, 150, 255);
+        // animations[i][j] = new LineAnimation(25);
       }
     }
   }

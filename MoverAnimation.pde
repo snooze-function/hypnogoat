@@ -5,8 +5,8 @@ class MoverAnimation {
 
   Mover[] movers;
 
-  MoverAnimation(int tempNumMover, int temp_index_type, int temp_index_subType, int temp_index_velocity, int temp_index_acceleration, int temp_index_grow, int temp_index_size, int temp_index_sizeMax, boolean temp_polychrome, int temp_colourRange, int temp_opacityMax) {
-    numMovers = tempNumMover;
+  MoverAnimation(int temp_numMover, int temp_index_type, int temp_index_subType, int temp_index_velocity, int temp_index_acceleration, int temp_index_grow, int temp_index_size, int temp_index_sizeMax, boolean temp_polychrome, int temp_colourRange, int temp_opacityMax) {
+    numMovers = temp_numMover;
     on = false;
 
     // CREATE THE ARRAY

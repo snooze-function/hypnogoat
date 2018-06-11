@@ -31,8 +31,8 @@ class Line {
 
   void update() {
     if (on == true) {
-      thickness+=0.01;
-      if (thickness > 1) {
+      thickness++;
+      if (thickness > 10) {
         opacity-=5;
       }
       if (opacity == 0) {
