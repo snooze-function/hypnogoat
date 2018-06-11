@@ -4,14 +4,15 @@ class VirtualMonome {
   float a;
   float size;
   Button[][][] buttons = new Button[16][16][8];
-  int page = 0;
-  boolean virtualMonomeActive = false;
+  int page;
+  boolean on = false;
+  String toggleScribble = "::: virtual monome :::";
 
-  VirtualMonome(float tempX, float tempY, float tempSize, float tempA) {
-    x = tempX;
-    y = tempY;
-    size = tempSize;
-    a = tempA;
+  VirtualMonome(float temp_x, float temp_y, float temp_size, float temp_a) {
+    x = temp_x;
+    y = temp_y;
+    size = temp_size;
+    a = temp_a;
     for (int i = 0; i < 16; i++) {
       for (int j = 0; j < 16; j++) {
         for (int k = 0; k < 8; k++) {
@@ -22,78 +23,114 @@ class VirtualMonome {
   }
 
   void display() {
-    virtualMonomeToogle();
-    if (virtualMonomeActive) {
+    displaySwitch();
+    displayVirtualMonome();
+  }
+
+  void displaySwitch() {
+    // DISPLAY VIRTUAL MONOME ON + OFF TOGGLE
+    if (on) {
+      displaySwitchOn();
+      // System.out.println("xyz");
+    } else {
+      displaySwitchOff();
+    }
+  }
+
+  void displayVirtualMonome() {
+    if (on) {
       for (int i = 0; i < 16; i++) {
         for (int j = 0; j < 8; j++) {
           buttons[page][i][j].display(mouseX, mouseY);
         }
       }
     }
-    if (virtualDirty) {
-      // rollover();
-      // virtualDirty = false;
-    }
   }
 
-  void rollover() {
+  void mousePressedInput() {
+    // DISPLAY VIRTUAL MONOME ON + OFF
     if (mouseX > x && mouseX < x + size * 16 && mouseY > y + size * 8 && mouseY < y + size * 9) {
-      virtualMonomeActive = !virtualMonomeActive;
+      on = !on;
     }
-    if (virtualMonomeActive) {
+
+    // TRIGGER MONOME VIRTUAL BUTTON DOWN
+    if (on) {
       for (int i = 0; i < 16; i++) {
         for (int j = 0; j < 8; j++) {
-          buttons[page][i][j].rollover(mouseX, mouseY);
+          buttons[page][i][j].rolloverPressed(mouseX, mouseY);
         }
       }
     }
+  }
+
+  void mouseReleasedInput() {
+    // TRIGGER MONOME VIRTUAL BUTTON UP
+    if (on) {
+      for (int i = 0; i < 16; i++) {
+        for (int j = 0; j < 8; j++) {
+          buttons[page][i][j].rolloverReleased();
+        }
+      }
+    }
+  }
+
+  void keyboardInput() {
+    if (key == 'm') {
+      on = !on;
+    }
+  }
+
+  void pageChange(int x, int y, int s) {
+    if (s == 1) {
+      page = x;
+      buttons[page][x][y].pageChange(s);
+      System.out.println(" >>> VIRTUAL_MONOME_PAGE " + x);
+      //System.out.println("sdjf");
+    }
+  }
+
+  void momentary(int x, int y, int s) {
+    buttons[page][x][y].momentary(s);
+    //System.out.println("sdjf");
+  }
+
+  void toggle(int x, int y, int s) {
+    buttons[page][x][y].toggle(s);
+    //System.out.println("sdjf");
   }
 
   void buttonRelease() {
     // System.out.println("button release");
-    if (virtualMonomeActive) {
+    if (on) {
       for (int i = 0; i < 16; i++) {
         for (int j = 0; j < 8; j++) {
-          buttons[page][i][j].buttonRelease(mouseX, mouseY);
+          //buttons[page][i][j].buttonRelease(mouseX, mouseY);
         }
       }
     }
   }
 
-  void virtualMonomeToogle() {
-    String p = "::: virtual monome :::";
+  void displaySwitchOn() {
     textSize(size);
     textAlign(CENTER);
     rectMode(CORNER);
     strokeWeight(1);
-    if (virtualMonomeActive) {
-      stroke(255, a);
-      fill(0, a);
-      rect(x, y + size * 8, size * 16, size);
-      fill(255);
-      text(p, x + size * 8, y + size * 9);
-      // BUG Funktion sollte nur einmal aufgerufen werden, wird aber für alle elemente im array dargestellt
-      // System.out.println("bullshit");
-    } else {      
-      stroke(0, a);
-      fill(255, a);
-      rect(x, y + size * 8, size * 16, size);
-      fill(0, a);
-      text(p, x + size * 8, y + size * 9);
-    }
+    stroke(255, a);
+    fill(0, a);
+    rect(x, y + size * 8, size * 16, size);
+    fill(255);
+    text(toggleScribble, x + size * 8, y + size * 9);
   }
 
-  void trigger() {
-    virtualMonomeActive = !virtualMonomeActive;
-  }
-
-  void buttonTrigger(int x, int y, int s) {
-    if (y == 0) {
-      page = x;
-      System.out.println(applicationName + " >>> VIRTUAL_MONOME_PAGE " + x);
-    }
-    buttons[page][x][y].trigger(x, y, s);
-    // key(x, y, 0);
-    //System.out.println("sdjf");
+  void displaySwitchOff() {
+    textSize(size);
+    textAlign(CENTER);
+    rectMode(CORNER);
+    strokeWeight(1);
+    stroke(0, a);
+    fill(255, a);
+    rect(x, y + size * 8, size * 16, size);
+    fill(0, a);
+    text(toggleScribble, x + size * 8, y + size * 9);
   }
 }

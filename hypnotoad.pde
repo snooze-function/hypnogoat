@@ -29,8 +29,6 @@ boolean dirty;
 
 // INITIALIZE VIRTUAL MONOME VARIABLES
 VirtualMonome virtualMonome;
-boolean virtualDirty;
-boolean redraw = true;
 
 // INITIALIZE TIMER VARIABLES
 Timer timer;
@@ -43,6 +41,7 @@ AnimationHub animationHub_00;
 color bg;
 int bg_range;
 boolean bg_polychrome;
+boolean redraw = true;
 
 // INITIALIZE RECORDER VARIABLES
 boolean recording = false;
@@ -79,7 +78,7 @@ public void setup() {
   // FULL SCREEN
   fullScreen();
   // surface.setResizable(true);
-  
+
   // SLOW DOWN FOR DEBUGGING
   // frameRate(5);
 
@@ -143,6 +142,7 @@ public void draw() {
 
   // DRAW BACKGROUND
   background_draw();
+  //System.out.println(bg);
 
   // RECORDER
   if (recording) {
@@ -164,18 +164,10 @@ public void draw() {
     // changeBackgroundColour();
   }
 
-  //
-  if (virtualDirty) {
-    virtualMonome.buttonRelease();
-    // System.out.println("bonga");
-    virtualDirty = false;
-  }
-
   // REFRESH LED ARRAY
   if (dirty) {
     m.refresh(led);
     dirty = false;
-    // ADD MONOME BUTTON RELEASE FUNCTION ??
   }
 
   // DISPLAY ANIMATION HUB
@@ -191,9 +183,6 @@ public void draw() {
 
   // SHOW SPLASH SCREEN
   displaySplashScreeen();
-
-  // WHY IS THIS WORKING ???
-  // System.out.println(virtualDirty);
 
   // CONSTRAIN VARIABLES
   // helpMenuOpacity = constrain(helpMenuOpacity, 0, menuOpacity);
