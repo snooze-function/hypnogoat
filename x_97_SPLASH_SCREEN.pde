@@ -8,7 +8,7 @@ void splashScreeen_background() {
   if (splashScreen) {
     rectMode(CORNER);
     noStroke();
-    fill(0, 0, 0, splashScreeenOpacity);
+    fill(50, 0, 0, splashScreeenOpacity);
     rect(0, 0, width, height);
 
     //MATRIX RAIN
@@ -36,7 +36,7 @@ void splashScreeen_text() {
 void splashScreeen_dim() {
   if (splashScreen) {
     // SET DIM SPEED FOR THE SPLASH SCREEN
-    float dimspeed = 0.3;
+    float dimspeed = 0.5;
 
     // DIM WITH DIMSPEED
     splashScreeenOpacity-=dimspeed;
