@@ -59,6 +59,10 @@ String applicationDate = applicationInformation.substring(50, 58);
 boolean splashScreen = true;
 float splashScreeenOpacity = 255;
 
+// INITIALIZE MATRIX RAIN VARIABLES
+PFont theFont;
+ArrayList<Stream> streams;
+
 // INITIALIZE HELP MENU VARIABLES
 boolean helpMenu = false;
 boolean helpMenuDirty = false;
@@ -72,11 +76,11 @@ PFont myFont;
 public void setup() {
   // SET BACKGROUND SIZE (MUST BE THE FIRST LINE IN SETUP)
   // HD RESOLUTION
-  // size(1920, 1080);
+  // size(1920, 1080, P2D);
   // WORK RESOLUTION
-  // size(960, 540);
+  // size(960, 540, P2D);
   // FULL SCREEN
-  fullScreen();
+  fullScreen(P2D);
   // surface.setResizable(true);
 
   // SLOW DOWN FOR DEBUGGING
@@ -84,6 +88,14 @@ public void setup() {
 
   // ANTI-ALIASING ON
   smooth();
+
+  // SET MATRIX RAIN VARIABLES
+  theFont = createFont("Arial Unicode MS", 20);
+  textFont(theFont);
+  streams = new ArrayList<Stream>();
+  for (int x = 10; x < width; x+=20) {
+    streams.add(new Stream(x));
+  }
 
   // SET SIZE FOR HELP MENU BUTTON
   helpMenuButtonHeight = height/20;

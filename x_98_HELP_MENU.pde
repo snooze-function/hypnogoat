@@ -34,8 +34,8 @@ void helpMenu_monomeGrid() {
 
 void helpMenu_text() {
   if (helpMenuOpacity > 0) {
-
-    float textsize = height / 5;
+    int size = 20;
+    float textsize = height / 10;
 
     // APPLICATION NAME
     textAlign(LEFT);
@@ -43,13 +43,108 @@ void helpMenu_text() {
     fill(255, helpMenuOpacity);
     text(applicationName, 0 + textsize/6, 0 + textsize/1.3);
 
-    textsize = height / 40;
+    textsize = height / 50;
 
     // APPLICATION INFORMATIONS
     textAlign(RIGHT);
     textSize(textsize);
     fill(255, helpMenuOpacity);
     text(applicationInformation, width - textsize/2, height - textsize/3);
+
+    textsize = height / 42;
+
+    // EXPLANATIONS
+    textAlign(CENTER);
+    textSize(textsize);
+    fill(255, helpMenuOpacity);
+    text("Page 01 - 16  >", width/3, height/2 - size * 3);
+
+    textAlign(CENTER);
+    textSize(textsize);
+    fill(255, helpMenuOpacity);
+    text("Animation 01 >", width/3, height/2 - size * 2);
+
+    textAlign(CENTER);
+    textSize(textsize);
+    fill(255, helpMenuOpacity);
+    text("Animation 02 >", width/3, height/2 - size);
+
+    textAlign(CENTER);
+    textSize(textsize);
+    fill(255, helpMenuOpacity);
+    text("Animation 03 >", width/3, height/2);
+
+    textAlign(CENTER);
+    textSize(textsize);
+    fill(255, helpMenuOpacity);
+    text("Animation 04 >", width/3, height/2 + size);
+
+    textAlign(CENTER);
+    textSize(textsize);
+    fill(255, helpMenuOpacity);
+    text("Animation 05 >", width/3, height/2 + size * 2);
+
+    textAlign(CENTER);
+    textSize(textsize);
+    fill(255, helpMenuOpacity);
+    text("Animation 06 >", width/3, height/2 + size * 3);
+
+    textAlign(CENTER);
+    textSize(textsize);
+    fill(255, helpMenuOpacity);
+    text("Animation 07 >", width/3, height/2 + size * 4);
+
+    //
+
+    textsize = height / 52;
+
+    textAlign(CENTER);
+    textSize(textsize);
+    fill(127, helpMenuOpacity);
+    text("ROW 01: Switch Pages", width/2, height/2 + size * 8);
+
+    textsize = height / 42;
+
+    textAlign(CENTER);
+    textSize(textsize);
+    fill(127, helpMenuOpacity);
+    text("PAGE 01 - 16", width/2, height/2 + size * 11);
+
+    textsize = height / 52;
+
+    textAlign(CENTER);
+    textSize(textsize);
+    fill(127, helpMenuOpacity);
+    text("COLUMN 01: Animation ON/OFF", width/2, height/2 + size * 13);
+
+    textAlign(CENTER);
+    textSize(textsize);
+    fill(127, helpMenuOpacity);
+    text("COLUMN 03 - 12: Animation MODIFY", width/2, height/2 + size * 15);
+
+    textAlign(CENTER);
+    textSize(textsize);
+    fill(127, helpMenuOpacity);
+    text("COLUMN 03 - 12: Animation MODIFY", width/2, height/2 + size * 17);
+
+    textsize = height / 74;
+
+    textAlign(CENTER);
+    textSize(textsize);
+    fill(127, helpMenuOpacity);
+    text("(3/4 shapes +/+ || 5 fill ON/OFF || 7/8 direction -/+ || 9/10 speed -/+ || 11/12 grow-speed -/+)", width/2, height/2 + size * 18);
+
+    textsize = height / 64;
+
+    textAlign(CENTER);
+    textSize(textsize);
+    fill(127, helpMenuOpacity);
+    text("...(x=14 && y=7) change background colour", width/2, height/2 + size * 21);
+
+    textAlign(CENTER);
+    textSize(textsize);
+    fill(127, helpMenuOpacity);
+    text("...(x=15 && y=7) background redrawing ON/OFF (trippy)", width/2, height/2 + size * 23);
   }
 }
 

@@ -10,6 +10,11 @@ void splashScreeen_background() {
     noStroke();
     fill(0, 0, 0, splashScreeenOpacity);
     rect(0, 0, width, height);
+
+    //MATRIX RAIN
+    for (Stream s : streams) {
+      s.update();
+    }
   }
 }
 
@@ -31,7 +36,7 @@ void splashScreeen_text() {
 void splashScreeen_dim() {
   if (splashScreen) {
     // SET DIM SPEED FOR THE SPLASH SCREEN
-    float dimspeed = 1;
+    float dimspeed = 0.3;
 
     // DIM WITH DIMSPEED
     splashScreeenOpacity-=dimspeed;
