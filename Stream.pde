@@ -11,36 +11,37 @@ class Stream {
 
     speed = round(random(3, 5));
 
-    for (int y = int(random(-height/2, height/2)); y < numChar*20; y+=20) {
+    for (int y = int(random(-height/2, height/2)); y < numChar * 20; y+=20) {
       chars.add(new Char(temp_x, y));
     }
   }
 
-  void update() {
+  void update(float a) {
     for (int i = 0; i < chars.size(); i++) {
-      float alpha = map(i, 0, chars.size()-1, 0, 150);
-      fill(250, 150, 0, alpha);
+      float alpha = map(i, 0, chars.size()-1, 0, a); 
+      fill(250, 150, 0, alpha); 
       if (i == chars.size()-1) {
-        fill(150, 150, 150);
+        fill(150, a);
       }
-      chars.get(i).show();
+      chars.get(i).show(); 
 
       // MOVE CHARACTERS
       if (frameCount % speed == 0) {
-        chars.get(i).y +=20;
+        chars.get(i).y +=20; 
 
         // CHARACTER STAYS, IF SIZE-1 NEW CHAR
         if (i == chars.size()-1) {
           chars.get(i).getRandomChar();
+          // chars.get(i).getHypnogoatChars();
         } else {
           chars.get(i).theChar = chars.get(i+1).theChar;
         }
       }
 
       // CHANGE CHARACTER RANDOMLY
-      if (random(1) < 0.001) {
-        chars.get(i).getRandomChar();
-      }
+      //if (random(1) < 0.001) {
+      //  chars.get(i).getRandomChar();
+      //}
     }
 
     // RESTART STREAM AT THE TOP WHEN LAST CHARACTER REACHES BOTTOM

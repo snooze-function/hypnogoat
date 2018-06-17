@@ -1,6 +1,6 @@
 /*
  +++++++++++++++++++++++++++++++++++++++++++++++++++
- +hypnotoad ++++++++++++++++++++++++++++++++++++++++
+ +hypnogoat ++++++++++++++++++++++++++++++++++++++++
  +++[M0N0M3 C0NTR0LL3D G3N3R4T1V3 V15U4L5]+++++++++++
  +++++++DATE 18-01-28+++++++++++++++++++++++++++++++
  +++++++VERSION 0.01++++++++++++++++++++++++++++++++
@@ -27,8 +27,14 @@ int[][][] ledPage;
 int[][] led;
 boolean dirty;
 
-// INITIALIZE VIRTUAL MONOME VARIABLES
+// INITIALIZE VIRTUAL MONOME VARIABLE
 VirtualMonome virtualMonome;
+
+// INITIALIZE HELP MENU VARIABLE
+HelpMenu helpMenu;
+
+// INITILÀLIZE SPLASH SCREEN VARIABLE
+SplashScreen splashScreen;
 
 // INITIALIZE TIMER VARIABLES
 Timer timer;
@@ -48,27 +54,16 @@ boolean recording = false;
 // add var for picture format
 
 // INITIALIZE STRINGS
-String applicationName = "hypnotoad";
+String applicationName = "hypnogoat";
 String applicationInformation = "* version 0.01 * written by Markus Loebel (red) * May 2018 *";
 
 String applicationVersion = applicationInformation.substring(2, 14);
 String applicationAuthor = applicationInformation.substring(17, 48);
 String applicationDate = applicationInformation.substring(50, 58);
 
-// INITIALIZE SPLASH SCREEN VARIABLES
-boolean splashScreen = true;
-float splashScreeenOpacity = 255;
-
 // INITIALIZE MATRIX RAIN VARIABLES
 PFont theFont;
 ArrayList<Stream> streams;
-
-// INITIALIZE HELP MENU VARIABLES
-boolean helpMenu = false;
-boolean helpMenuDirty = false;
-float menuOpacity = 100;
-float helpMenuOpacity = 0;
-float helpMenuButtonHeight;
 
 // INITIALIZE FONT
 PFont myFont;
@@ -78,9 +73,11 @@ public void setup() {
   // HD RESOLUTION
   // size(1920, 1080, P2D);
   // WORK RESOLUTION
-  // size(960, 540, P2D);
+  size(960, 540, P2D);
   // FULL SCREEN
-  fullScreen(P2D);
+  // fullScreen(P2D);
+  // FULL SCREEN SPAN
+  // fullScreen(P2D, SPAN);
   // surface.setResizable(true);
 
   // SLOW DOWN FOR DEBUGGING
@@ -97,9 +94,6 @@ public void setup() {
     streams.add(new Stream(x));
   }
 
-  // SET SIZE FOR HELP MENU BUTTON
-  helpMenuButtonHeight = height/20;
-
   // APPLICATION NAME (TITLE BAR)
   surface.setTitle(applicationName);
 
@@ -109,13 +103,8 @@ public void setup() {
   // SET BACKGROUND TO MONO- OR POLYCHROME
   bg_polychrome = true;
 
-  if (bg_polychrome) {
-    // SET RANDOM POLYCHROME BACKGROUND COLOUR
-    bg = color(random(bg_range), random(bg_range), random(bg_range));
-  } else {
-    // SET RANDOM MONOCHROME BACKGROUND COLOUR
-    bg = color(random(bg_range));
-  }
+  // GET RANDOM BACKGROUND COLOUR
+  background_getNewColour();
 
   // SET MONOME VARIABLES
   m = new Monome(this);
@@ -125,8 +114,14 @@ public void setup() {
   led = ledPage[0];
   dirty = true;
 
-  // SET VIRTUAL MONOME VARIABLES
-  virtualMonome = new VirtualMonome(width - 16 * 15, height - 9 * 15, 15, menuOpacity);
+  // SET VIRTUAL MONOME VARIABLE
+  virtualMonome = new VirtualMonome(width - 16 * 15, height - 9 * 15, 15, 128);
+
+  // SET HELP MENU VARIABLE
+  helpMenu = new HelpMenu();
+
+  // SET SPLASH SCREEN VARIABLE
+  splashScreen = new SplashScreen(0.5);
 
   // SET ANIMATION-HUB VARIABLE
   animationHub_00 = new AnimationHub(numLedPages, 8);
@@ -164,6 +159,8 @@ public void draw() {
   // START TIMER BASED FUNCTIONS
   if (timer.isFinished()) {
 
+    //System.out.println("Timer");
+
     // START ANIMATION HUB
     animationHub_00.start();
 
@@ -186,18 +183,16 @@ public void draw() {
   animationHub_00.display();
 
   // DISPLAY VIRTUAL MONOME
-  if (!helpMenu) {
+  //virtualMonome.display();
+  if (!helpMenu.getsDisplayed()) {
     virtualMonome.display();
   }
 
-  // SHOW HELP MENU
-  displayHelpMenu();
+  // DISPLAY HELP MENU
+  helpMenu.display();
 
-  // SHOW SPLASH SCREEN
-  displaySplashScreeen();
-
-  // CONSTRAIN VARIABLES
-  // helpMenuOpacity = constrain(helpMenuOpacity, 0, menuOpacity);
+  // DISPLAY SPLASH SCREEN
+  splashScreen.display();
 }
 
 void counter() {

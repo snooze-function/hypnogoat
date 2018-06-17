@@ -1,8 +1,7 @@
 void mousePressed() {
   // EMULATES MONOME KEY DOWN
   virtualMonome.mousePressedInput();
-  helpMenuDirty = true;
-  helpMenu_button_rollover();
+  helpMenu.rollover();
   // System.out.println(mouseButton);
 }
 
@@ -15,6 +14,8 @@ void keyPressed() {
   // PRESS "m" TO DISPLAY VIRTUAL MONOME
   virtualMonome.keyboardInput();
 
+  helpMenu.keyboardInput();
+
   keyboardTriggers();
   recordingToggle();
 }
@@ -23,18 +24,18 @@ void keyboardTriggers() {
   if (keyPressed) {  
     if (key == ' ') {  // background redraw ON/OFF function !!!
       background_redraw();
-      System.out.println("wtf");
+      //System.out.println("wtf");
     }
 
-    if (key == 'n') {
-      background_changeColour();
+    if (key == 'b') {
+      background_getNewColour();
     }
   }
 }
 
 void key(int x, int y, int s) {
   // PRINT MONOME KEY
-  System.out.println("key received: " + x + ", " + y + ", " + s);
+  // System.out.println("key received: " + x + ", " + y + ", " + s);
 
   // ROW 1 PAGE CHANGE
   if (y == 0) {
@@ -65,9 +66,9 @@ void key(int x, int y, int s) {
       virtualMonome.momentary(x, y, s);
     }
 
-    // CHANGE BACKGROUND
+    // CHANGE BACKGROUND COLOUR
     if (y == 7 && x == 14 && s == 1) {
-      background_changeColour();
+      background_getNewColour();
 
       ledToggle(x, y, s);
     }

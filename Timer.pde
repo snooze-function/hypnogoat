@@ -12,7 +12,7 @@ class Timer {
     savedTime = millis();
   }
 
-  public boolean isFinished() {
+  boolean isFinished() {
     // Check how much time has passed
     int passedTime = millis() - savedTime;
     if (passedTime > totalTime) {
