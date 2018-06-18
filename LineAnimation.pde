@@ -32,9 +32,11 @@ class LineAnimation {
 
   //DISPLAY LINES
   void display() {
-    for (int i = 0; i < lines.length; i++) {
-      lines[i].display();
-      lines[i].update();
+    if (on) {
+      for (int i = 0; i < lines.length; i++) {
+        lines[i].display();
+        lines[i].update();
+      }
     }
   }
 
@@ -42,7 +44,7 @@ class LineAnimation {
   void monomeKeyIn(int x) {
 
     //System.out.println("bang");
-    
+
     // SWITCH ANIMATION ON/OFF + FADE ANIMATION IN/OUT
     toggle(x);
 

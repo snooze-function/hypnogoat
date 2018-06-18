@@ -37,6 +37,10 @@ void key(int x, int y, int s) {
   // PRINT MONOME KEY
   // System.out.println("key received: " + x + ", " + y + ", " + s);
 
+  // ANIMATION MONOME KEY INPUT
+  //animation_01.monomeKeyIn(x, y, s);
+  animationHub_00.monomeKeyIn(x, y, s);
+
   // ROW 1 PAGE CHANGE
   if (y == 0) {
     ledPageChange(x, y, s);
@@ -46,9 +50,6 @@ void key(int x, int y, int s) {
   // PAGE 01 - 16
 
   if (y > 0) {
-    // ANIMATION MONOME KEY INPUT
-    //animation_01.monomeKeyIn(x, y, s);
-    animationHub_00.monomeKeyIn(x, y, s);
 
     // COLUMN 00
     if (x == 0) {
@@ -88,7 +89,7 @@ void ledPageChange(int x, int y, int s) {
     led = ledPage[currentLedPage];
     led[y][currentLedPage] = 15;
     dirty = true;
-    System.out.println(" >>> MONOME_PAGE " + (x + 1));
+    System.out.println(" >>> MONOME_PAGE " + x);
   }
 }
 

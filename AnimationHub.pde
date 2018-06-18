@@ -9,55 +9,77 @@
 
 class AnimationHub {
   int numAnimationPages;// USE FOR PAGING
-  //int currentPage; // USE FOR PAGING
+  int currentPage; // USE FOR PAGING
   int numAnimations;
   boolean on; // UNUSED
 
-  MoverAnimation[][] animations;
-  // LineAnimation[][] animations;
+  // INITIALIZE ARRAYS
+  MoverAnimation[] animationHubPage00;
+  LineAnimation[] animationHubPage01;
+  DropAnimation[] animationHubPage02;
 
   AnimationHub( int temp_numAnimationPages, int temp_numAnimations) {
     numAnimationPages = temp_numAnimationPages;
-    //currentPage = temp_currentPage;
+    currentPage = 0;
     numAnimations = temp_numAnimations;
     on = false; // UNUSED
 
-    // CREATE THE ARRAY
-    animations = new MoverAnimation[numAnimationPages][numAnimations];
-    // animations = new LineAnimation[numAnimationPages][numAnimations];
+    // CREATE ARRAYS
+    animationHubPage00 = new MoverAnimation[numAnimations];
+    animationHubPage01 = new LineAnimation[numAnimations];
+    animationHubPage02 = new DropAnimation[numAnimations];
 
-    // FILL ARRAY WITH ANIMATIONS
-    for (int i = 0; i < numAnimationPages; i++) {
-      for (int j = 0; j < numAnimations; j++) {
-        animations[i][j] = new MoverAnimation(25, int(random(11)), 0, 7, int(random(11)), 1, 1, height/5, true, 150, 255);
-        // animations[i][j] = new LineAnimation(25);
-      }
+    // FILL ARRAYS WITH ANIMATIONS
+    for (int i = 1; i < numAnimations; i++) { // i = 1 BECAUSE INDEX 0 IS UNUSED BECAUSE OF PSGE CHANGE FUNCTION
+      animationHubPage00[i] = new MoverAnimation(25, int(random(11)), 0, 7, int(random(11)), 1, 1, height/5, true, 150, 255);
+      animationHubPage01[i] = new LineAnimation(25);
+      animationHubPage02[i] = new DropAnimation();
     }
   }
 
   void start() {
-    for (int i = 0; i < numAnimationPages; i++) {
-      for (int j = 0; j < numAnimations; j++) 
-        animations[i][j].start();
+    for (int i = 1; i < numAnimations; i++) { // i = 1 BECAUSE INDEX 0 IS UNUSED BECAUSE OF PSGE CHANGE FUNCTION
+      animationHubPage00[i].start();
+      animationHubPage01[i].start();
     }
   }
 
   void display() {
-    for (int i = 0; i < numAnimationPages; i++) {
-      for (int j = 0; j < numAnimations; j++) {
-        animations[i][j].display();
-      }
+    for (int i = 1; i < numAnimations; i++) { // i = 1 BECAUSE INDEX 0 IS UNUSED BECAUSE OF PSGE CHANGE FUNCTION
+      animationHubPage01[i].display();
+      animationHubPage00[i].display();
+      animationHubPage02[i].display();
     }
   }
 
   // ANIMATION-HUB MONOME KEY INPUT
   void monomeKeyIn(int x, int y, int s) {
+    //System.out.println("ANIMATION-HUB MONOME KEY INPUT " + x + ", " + y + ", " + s);
 
-    // IF NOT PAGE CHANGE && MONOME KEY s == 1
-    if (y > 0 && s == 1) {
-      // SEND MONOME KEY X TO ANIMATION Y
-      animations[currentLedPage][y].monomeKeyIn(x);
+    // CHANGE ANIMATION HUB PAGE
+    if (y == 0 && s == 1) {
+      currentPage = x;
+      System.out.println(" >>> ANIMATION_HUB_PAGE = " + currentPage);
     }
-    //System.out.println("bang");
+
+    // SEND MONOME KEY X, Y TO ANIMATION HUB PAGE
+    if (currentPage == 0) {
+      if (y > 0 && s == 1) {
+        // SEND MONOME KEY X TO ANIMATION Y
+        animationHubPage00[y].monomeKeyIn(x);
+      }
+    }
+
+    if (currentPage == 1) {
+      if (y > 0 && s == 1) {
+        animationHubPage01[y].monomeKeyIn(x);
+      }
+    }
+
+    if (currentPage == 2) {
+      if (y > 0 && s == 1) {
+        animationHubPage02[y].monomeKeyIn(x);
+      }
+    }
   }
 }
