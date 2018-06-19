@@ -15,10 +15,11 @@ class Mover {
   float opacity;
   float fillOpacity;
   color c;
-  color invisible;
+  //color invisible;
   float size;
   float initSize;
-  float rotation;
+  float theta;
+  float rotationSpeed;
   int index_type;
   int index_subType;
   int index_velocity;
@@ -58,6 +59,9 @@ class Mover {
     polychrome = temp_polychrome;
     colourRange = temp_colourRange;
     opacityMax = temp_opacityMax;
+
+    theta = 0;
+    rotationSpeed = 0;
   }
 
   // Mover Constructor
@@ -99,6 +103,10 @@ class Mover {
     //update_velocity(index_velocity);
     update_grow(index_grow);
 
+    theta+=rotationSpeed;
+
+    //c*=1.001;
+
     // Motion 101!  Velocity changes by acceleration.  Location changes by velocity.
     velocity.add(acceleration);
     velocity.limit(topspeed);
@@ -111,64 +119,69 @@ class Mover {
 
   void display_type(int index_type) {
     if (on) {
+
+      pushMatrix();
+      translate(location.x, location.y);
+      rotate(theta);
+
       // DISPLAY SPACE INVADER a
       if (index_type == 0) {
-        shape_spaceInvader_a(location.x, location.y, size, size, c, opacity, fillOpacity);
+        shape_spaceInvader_a(0, 0, size, size, c, opacity, fillOpacity);
       }
 
       // DISPLAY SPACE INVADER b
       if (index_type == 1) {
-        shape_spaceInvader_b(location.x, location.y, size, size, c, opacity, fillOpacity);
+        shape_spaceInvader_b(0, 0, size, size, c, opacity, fillOpacity);
       }
 
       // DISPLAY SPACE INVADER c
       if (index_type == 2) {
-        shape_spaceInvader_c(location.x, location.y, size, size, c, opacity, fillOpacity);
+        shape_spaceInvader_c(0, 0, size, size, c, opacity, fillOpacity);
       }
-      
+
       // DISPLAY SPACE INVADER d
       if (index_type == 3) {
-        shape_spaceInvader_d(location.x, location.y, size, size, c, opacity, fillOpacity);
+        shape_spaceInvader_d(0, 0, size, size, c, opacity, fillOpacity);
       }
 
       // DISPLAY SPACE INVADER e
       if (index_type == 4) {
-        shape_spaceInvader_e(location.x, location.y, size, size, c, opacity, fillOpacity);
+        shape_spaceInvader_e(0, 0, size, size, c, opacity, fillOpacity);
       }
 
       // DISPLAY SPACE INVADER f
       if (index_type == 5) {
-        shape_spaceInvader_f(location.x, location.y, size, size, c, opacity, fillOpacity);
+        shape_spaceInvader_f(0, 0, size, size, c, opacity, fillOpacity);
       }
-      
+
       // DISPLAY SPACE INVADER g
       if (index_type == 6) {
-        shape_spaceInvader_g(location.x, location.y, size, size, c, opacity, fillOpacity);
+        shape_spaceInvader_g(0, 0, size, size, c, opacity, fillOpacity);
       }
 
       // DISPLAY SPACE INVADER h
       if (index_type == 7) {
-        shape_spaceInvader_h(location.x, location.y, size, size, c, opacity, fillOpacity);
+        shape_spaceInvader_h(0, 0, size, size, c, opacity, fillOpacity);
       }
 
       // DISPLAY PACMAN GHOST
       if (index_type == 8) {
-        shape_pacman_ghost(location.x, location.y, size, size, c, opacity, fillOpacity);
+        shape_pacman_ghost(0, 0, size, size, c, opacity, fillOpacity);
       }
 
       // DISPLAY RECTANGLE
       if (index_type == 9) {
-        shape_rect(location.x, location.y, size, size, c, opacity, fillOpacity);
+        shape_rect(0, 0, size, size, c, opacity, fillOpacity);
       }
 
       // DISPLAY ELLIPSE
       if (index_type == 10) {
-        shape_ellipse(location.x, location.y, size, size, c, opacity, fillOpacity);
+        shape_ellipse(0, 0, size, size, c, opacity, fillOpacity);
       }
 
       // DISPLAY 2 RECTANGLES
       if (index_type == 99) {
-        shape_rect_x2(location.x, location.y, size, size, c, opacity, fillOpacity);
+        shape_rect_x2(0, 0, size, size, c, opacity, fillOpacity);
       }
 
       // DISPLAY 4 RECTANGLES
@@ -182,6 +195,8 @@ class Mover {
       // DISPLAY %
       if (index_type == 99) {
       }
+
+      popMatrix();
     }
   }
 
@@ -292,7 +307,7 @@ class Mover {
     opacity = 0;
 
     // RESET ROTATION
-    // rotation = 0;
+    theta = 0;
 
     // RESET STATE
     state = 0;
@@ -398,6 +413,8 @@ class Mover {
     mod_animation_index_velocity(x);
     mod_animation_index_acceleration(x);
     mod_animation_index_grow(x);
+    mod_animation_rotationSpeed(x);
+    mod_animation_reset_rotationSpeed(x);
 
     // System.out.println(x);
   }
@@ -415,6 +432,13 @@ class Mover {
   void mod_animation_index_subType(int x) {
     if (x == 4) {
       index_subType++;
+    }
+  }
+
+  // MOD ANIMATION index_subType
+  void mod_animation_reset_rotationSpeed(int x) {
+    if (x == 5) {
+      rotationSpeed = 0;
     }
   }
 
@@ -442,6 +466,14 @@ class Mover {
       index_grow--;
     } else if (x == 11) {
       index_grow++;
+    }
+  }
+
+  void mod_animation_rotationSpeed(int x) {
+    if (x == 12) {
+      rotationSpeed-=0.002;
+    } else if (x == 13) {
+      rotationSpeed+=0.002;
     }
   }
 

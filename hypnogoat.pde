@@ -210,8 +210,8 @@ void counter() {
   // MONOME ANIMATION COL 2 + 12 + 13 + 14 +15
   if (counter > 0) {
     led[counter][1] ^= 15;
-    led[counter][12] ^= 15;
-    led[counter][13] ^= 15;
+    //led[counter][12] ^= 15;
+    //led[counter][13] ^= 15;
     led[counter][14] ^= 15;
     led[counter][15] ^= 15;
     dirty = true;
