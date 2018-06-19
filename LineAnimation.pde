@@ -5,8 +5,9 @@ class LineAnimation {
 
   Line[] lines;
 
-  LineAnimation(int temp_numLines) {
+  LineAnimation(int temp_numLines, int a_max) {
     numLines = temp_numLines;
+
     on = false;
 
     // CREATE THE ARRAY
@@ -14,7 +15,7 @@ class LineAnimation {
 
     // CREATE EACH OBJECT
     for (int i = 0; i < lines.length; i++) {
-      lines[i] = new Line();
+      lines[i] = new Line(a_max);
     }
   }
 

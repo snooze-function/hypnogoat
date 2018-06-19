@@ -17,6 +17,7 @@ class AnimationHub {
   MoverAnimation[] animationHubPage00;
   LineAnimation[] animationHubPage01;
   DropAnimation[] animationHubPage02;
+  BlockAnimation[] animationHubPage03;
 
   AnimationHub( int temp_numAnimationPages, int temp_numAnimations) {
     numAnimationPages = temp_numAnimationPages;
@@ -28,12 +29,14 @@ class AnimationHub {
     animationHubPage00 = new MoverAnimation[numAnimations];
     animationHubPage01 = new LineAnimation[numAnimations];
     animationHubPage02 = new DropAnimation[numAnimations];
+    animationHubPage03 = new BlockAnimation[numAnimations];
 
     // FILL ARRAYS WITH ANIMATIONS
     for (int i = 1; i < numAnimations; i++) { // i = 1 BECAUSE INDEX 0 IS UNUSED BECAUSE OF PSGE CHANGE FUNCTION
       animationHubPage00[i] = new MoverAnimation(25, int(random(11)), 0, 7, int(random(11)), 1, 1, height/5, true, 150, 255);
-      animationHubPage01[i] = new LineAnimation(25);
+      animationHubPage01[i] = new LineAnimation(25, 180);
       animationHubPage02[i] = new DropAnimation();
+      animationHubPage03[i] = new BlockAnimation(20, false, 150, 80);
     }
   }
 
@@ -46,9 +49,10 @@ class AnimationHub {
 
   void display() {
     for (int i = 1; i < numAnimations; i++) { // i = 1 BECAUSE INDEX 0 IS UNUSED BECAUSE OF PSGE CHANGE FUNCTION
+      animationHubPage03[i].display();
+      animationHubPage02[i].display();      
       animationHubPage01[i].display();
       animationHubPage00[i].display();
-      animationHubPage02[i].display();
     }
   }
 
@@ -79,6 +83,11 @@ class AnimationHub {
     if (currentPage == 2) {
       if (y > 0 && s == 1) {
         animationHubPage02[y].monomeKeyIn(x);
+      }
+    }
+    if (currentPage == 3) {
+      if (y > 0 && s == 1) {
+        animationHubPage03[y].monomeKeyIn(x);
       }
     }
   }
