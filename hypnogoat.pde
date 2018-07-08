@@ -55,7 +55,7 @@ boolean recording = false;
 
 // INITIALIZE STRINGS
 String applicationName = "hypnogoat";
-String applicationInformation = "* version 0.01 * written by Markus Loebel (red) * May 2018 *";
+String applicationInformation = "* version 0.01 * written by snooze-function (red) * May 2018 *";
 
 String applicationVersion = applicationInformation.substring(2, 14);
 String applicationAuthor = applicationInformation.substring(17, 48);

@@ -12,7 +12,8 @@ _hypnogoat_ started as a simple project to learn programming.
 While continuing to learn I also want to add more functionality to _hypnogoat_.
 
 ## Documentation  
-_hypnogoat_ provides a built-in Help Menu with instructions.
+_hypnogoat_ provides a built-in Help Menu with instructions.  
+_(Click "help"-Button or press "h")_
 
 ## Requirements  
 * [Processing](https://processing.org/)
