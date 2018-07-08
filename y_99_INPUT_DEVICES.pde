@@ -69,15 +69,15 @@ void key(int x, int y, int s) {
 
     // CHANGE BACKGROUND COLOUR
     if (y == 7 && x == 14 && s == 1) {
-      background_getNewColour();
+      //background_getNewColour();
 
-      ledToggle(x, y, s);
+      //ledToggle(x, y, s);
     }
 
     // REDRAW ON/OFF
     if (y == 7 && x == 15 && s == 1) {
-      background_redraw();
-      ledToggle(x, y, s);
+      //background_redraw();
+      //ledToggle(x, y, s);
     }
   }
 }

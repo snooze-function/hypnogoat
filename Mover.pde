@@ -15,6 +15,12 @@ class Mover {
   float opacity;
   float fillOpacity;
   color c;
+  float r;
+  float g;
+  float b;
+  float r_speed;
+  float g_speed;
+  float b_speed;
   //color invisible;
   float size;
   float initSize;
@@ -60,6 +66,10 @@ class Mover {
     colourRange = temp_colourRange;
     opacityMax = temp_opacityMax;
 
+    r_speed = 1;
+    g_speed = 1;
+    b_speed = 1;
+
     theta = 0;
     rotationSpeed = 0;
   }
@@ -104,6 +114,26 @@ class Mover {
     update_grow(index_grow);
 
     theta+=rotationSpeed;
+
+    r+=r_speed;
+    g+=g_speed;
+    b+=b_speed;
+
+    c = color(r, g, b);
+
+    //System.out.println("r = " + r);
+
+    if (r < 0 || r > colourRange) {
+      r_speed = r_speed * -1;
+    }
+
+    if (g < 0 || g > colourRange) {
+      g_speed = g_speed * -1;
+    }
+
+    if (b < 0 ||b > colourRange) {
+      b_speed = b_speed * -1;
+    }
 
     //c*=1.001;
 
@@ -399,7 +429,11 @@ class Mover {
   void get_new_random_colour(boolean polychrome, int colourRange) {
     if (polychrome) {
       // GENERATE NEW PLOYCHROME COLOUR
-      c = color(random(colourRange), random(colourRange), random(colourRange));
+      r = random(colourRange);
+      g = random(colourRange);
+      b = random(colourRange);
+      //System.out.println("r = " + r + " g = " + g + " b = " + g);
+      c = color(r, g, b);
     } else {
       // GENERATE NEW MONOCHROME COLOUR
       c = color(random(colourRange));
@@ -415,6 +449,7 @@ class Mover {
     mod_animation_index_grow(x);
     mod_animation_rotationSpeed(x);
     mod_animation_reset_rotationSpeed(x);
+    mod_animation_colourSpeed(x);
 
     // System.out.println(x);
   }
@@ -474,6 +509,18 @@ class Mover {
       rotationSpeed-=0.002;
     } else if (x == 13) {
       rotationSpeed+=0.002;
+    }
+  }
+
+  void mod_animation_colourSpeed(int x) {
+    if (x == 14) {
+      r_speed*=0.8;
+      g_speed*=0.8;
+      b_speed*=0.8;
+    } else if (x == 15) {
+      r_speed*=1.2;
+      g_speed*=1.2;
+      b_speed*=1.2;
     }
   }
 

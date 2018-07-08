@@ -1,10 +1,10 @@
 /*
  +++++++++++++++++++++++++++++++++++++++++++++++++++
  +hypnogoat ++++++++++++++++++++++++++++++++++++++++
- +++[M0N0M3 C0NTR0LL3D G3N3R4T1V3 V15U4L5]+++++++++++
+ +++[M0N0M3 C0NTR0LL3D G3N3R4T1V3 V15U4L5]++++++++++
  +++++++DATE 18-01-28+++++++++++++++++++++++++++++++
  +++++++VERSION 0.01++++++++++++++++++++++++++++++++
- +++++++AUTHOR red [Markus Loebel]++++++++++++++++++
+ +++++++AUTHOR snooze-function [red]++++++++++++++++
  +++++++++++++++++++++++++++++++++++++++++++++++++++
  +++++++++++++++++++++++++++++++++++++++++++++++++++
  */
@@ -73,9 +73,9 @@ public void setup() {
   // HD RESOLUTION
   // size(1920, 1080, P2D);
   // WORK RESOLUTION
-  size(960, 540, P2D);
+  // size(960, 540, P2D);
   // FULL SCREEN
-  // fullScreen(P2D);
+  fullScreen(P2D);
   // FULL SCREEN SPAN
   // fullScreen(P2D, SPAN);
   // surface.setResizable(true);
@@ -212,8 +212,8 @@ void counter() {
     led[counter][1] ^= 15;
     //led[counter][12] ^= 15;
     //led[counter][13] ^= 15;
-    led[counter][14] ^= 15;
-    led[counter][15] ^= 15;
+    //led[counter][14] ^= 15;
+    //led[counter][15] ^= 15;
     dirty = true;
   }
 

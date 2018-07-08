@@ -2,7 +2,7 @@
 _[M0N0M3 C0NTR0LL3D G3N3R4T1V3 V15U4L5]_  
 version: _0.01_  
 date: _may 2018_  
-written by: _Markus Loebel_  
+written by: _snooze-function_  
 
 ## What is _hypnogoat_?  
 _hypnogoat_ is a small apllication to draw visuals onto a screen.  
